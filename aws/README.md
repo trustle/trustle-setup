@@ -3,6 +3,12 @@
 This Terraform template will create policies and a user in AWS for the
 Trustle Connector.
 
+Using this template requires appropriate access for the AWS Terraform
+provider. Refer to the
+[Terraform AWS documentation](https://registry.terraform.io/providers/hashicorp/aws/latest/docs)
+ for further information.
+
+
 ## Example
 
 This Terraform template is an example. It will need to be customized for your
