@@ -129,7 +129,9 @@ resource "aws_iam_policy" "trustle-connector-write-policy" {
         "Effect": "Allow",
         "Action": [
           "iam:AddUserToGroup",
-          "iam:RemoveUserFromGroup"
+          "iam:RemoveUserFromGroup",
+          "iam:AttachUserPolicy",
+          "iam:DetachUserPolicy"
         ],
         "Resource": var.trustle-connector-writable-groups
       }
