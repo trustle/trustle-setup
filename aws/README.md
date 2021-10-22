@@ -19,8 +19,8 @@ groups from AWS but not updating them, then the
 `trustle-connector-write-policy` is not needed.
 
 Additionally, access and secret keys can be manually obtained from the AWS
-console instead of automatically with this template, in which case the template
-needs to be edited to skip this step.
+console or AWS CLI instead of automatically with this template, in which case
+the template needs to be edited to skip this step.
 
 ## Configuration
 
@@ -35,22 +35,27 @@ The template performs the following actions in AWS:
 + Creates an AWS user for the Trustle Connector. Default: `trustle-connector`.
 + Attaches the created policies to the created user.
 + Creates access and secret keys for the created user. This part of the template
-  can be removed to manually create AWS access keys in the AWS console.
+  can be removed to manually create access keys in the AWS console or AWS CLI.
 
 **Important: The Terraform template uses the `aws_iam_access_key` resource to
 create an AWS access key and secret key for the Trustle Connector user. These
 credentials are stored in the Terraform state file.** To avoid any potential
 exposure of these sensitive credentials, remove the outputs and resource from
-the Terraform template.
+the Terraform template and obtain these keys manually via the AWS console or
+AWS CLI.
 
 ## Usage
 
 Before applying this template please insure it has been modified for your usage.
 
 ```
+# Set up AWS credentials first - refer to Terraform AWS documentation
+
 $ terraform init
 
 $ terraform apply
+
+# Optionally obtain access and secret key for the user
 
 $ terraform output trustle-connector-access-key
 
@@ -58,7 +63,7 @@ $ terraform output trustle-connector-secret-key
 
 ```
 
-The access and secret keys are provided to Trustle when configuring an Automated
+The access and secret keys are provided to Trustle when configuring an automated
 AWS resource management system within the Trustle management UI. If manual
 creation of AWS access keys are preferred, obtain those directly from the AWS
-console.
+console or AWS CLI.
