@@ -114,6 +114,17 @@ resource "aws_iam_policy" "trustle-connector-read-policy" {
           "iam:GetAccountAuthorizationDetails"
         ],
         "Resource": "*"
+      },
+      {
+        "Effect": "Allow",
+        "Action": [
+          "iam:GenerateCredentialReport",
+          "iam:GetCredentialReport",
+          "iam:GenerateServiceLastAccessedDetails",
+          "iam:GetServiceLastAccessedDetails",
+          "iam:GetServiceLastAccessedDetailsWithEntities"
+        ],
+        "Resource": "*"
       }
     ]
   })
