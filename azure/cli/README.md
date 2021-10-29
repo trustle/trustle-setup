@@ -94,7 +94,7 @@ configuration.
 
 ### Authorize application to Azure subscription
 
-This stip will authorize the Trustle Connector application to the Azure
+This step will authorize the Trustle Connector application to the Azure
 subscription. The application ID is required, set in `APP_ID` here. The
 subscription ID is also required, specified in `SUB_ID` here. This can be
 found in the Azure console for the active subscription.
