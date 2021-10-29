@@ -1,0 +1,47 @@
+[{
+  "_comment": "Service Management",
+  "resourceAppId": "797f4846-ba00-4fd7-ba43-dac1f8f63013",
+  "resourceAccess": [
+    {
+      "_comment": "user_impersonation",
+      "id": "41094075-9dad-400e-a0bd-54e686782033",
+      "type": "Scope"
+    }]
+},
+{
+  "_comment": "Microsoft Graph",
+  "resourceAppId": "00000003-0000-0000-c000-000000000000",
+  "resourceAccess": [
+    {
+      "_comment": "offline_access",
+      "id": "7427e0e9-2fba-42fe-b0c0-848c9e6a8182",
+      "type": "Scope"
+    },
+    {
+      "_comment": "User.Read.All",
+      "id": "a154be20-db9c-4678-8ab7-66f6cc099a59",
+      "type": "Scope"
+    },
+    {
+      "_comment": "Group.Read.All",
+      "id": "5f8c59db-677d-491f-a6b8-5f174b11ec1d",
+      "type": "Scope"
+    },
+    {
+      "_comment": "Directory.Read.All",
+      "id": "06da0dbc-49e2-44d2-8312-53f166ab848a",
+      "type": "Scope"
+    },
+    {
+      "_comment": "AuditLog.Read.All",
+      "id": "e4c9e354-4dc5-45b8-9e7c-e1393b0b1a20",
+      "type": "Scope"
+    },
+    {
+      "_comment1": "Remove this for read-only access",
+      "_comment": "GroupMember.ReadWrite.All",
+      "id": "f81125ac-d3b7-4573-a3b2-7099cc39df9e",
+      "type": "Scope"
+    }
+ ]
+}]
