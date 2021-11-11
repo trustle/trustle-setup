@@ -53,9 +53,19 @@ name (`ORG_HOSTNAME` below). Additionally, the default access policies include
 `GroupMember.ReadWrite.All` which can be removed if the Trustle Connector will
 only be used to retrieve information from Azure into Trustle.
 
+Login to azure.
+
 ```
 # Set up Azure credentials first - refer to Azure CLI documentation
 
+TENANT_ID=4b1f48d8-ca84-62c6-b160-ebcb728589d0
+
+az login --tenant ${TENANT_ID}
+```
+
+Create the Trustle Connector application.
+
+```
 ORG_HOSTNAME=my-org
 APP_NAME="Trustle Connector"
 
@@ -70,9 +80,9 @@ the Azure console for the application registration on the "Overview" page as
 "Application (client) ID". The directory tenant ID is also required, which can
 be found under "Directory (tenant) ID" on the same tab.
 
-Note that an Administrator must go into the Azure console and consent to
+**Note that an Administrator must go into the Azure console and consent to
 application access by clicking the "Grant admin consent for ..." button on the
-"API Permissions" page.
+"API Permissions" page.**
 
 ### Generate a password for the application service account
 
@@ -114,3 +124,10 @@ az role assignment create \
 The directory tenant ID, connector application ID, and client secret are
 provided to Trustle when configuring an automated Azure resource management
 system within the Trustle management UI.
+
+If all the above was executed in the same shell session, you can echo the
+variables for values to configure the Azure Connector in Trustle:
+
++ The "Directory (tenant) ID": `echo $TENANT_ID`.
++ The "Application (client) ID": `echo $APP_ID`.
++ The "Client credentials (secret)": `echo $APP_PWD`.
