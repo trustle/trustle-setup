@@ -128,6 +128,8 @@ system within the Trustle management UI.
 If all the above was executed in the same shell session, you can echo the
 variables for values to configure the Azure Connector in Trustle:
 
-+ The "Directory (tenant) ID": `echo $TENANT_ID`.
-+ The "Application (client) ID": `echo $APP_ID`.
-+ The "Client credentials (secret)": `echo $APP_PWD`.
+```
+echo "Directory (tenant) ID       : $TENANT_ID"
+echo "Application (client) ID     : $APP_ID"
+echo "Client credentials (secret) : $APP_PWD"
+```
