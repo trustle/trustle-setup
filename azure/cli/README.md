@@ -9,8 +9,9 @@ for further information.
 
 ## Example
 
-This is an example of configuring the Trustle Connector for Azure via the CLI.
-It will need to be customized for your specific environment and requirements.
+This is an example of configuring the Trustle Connector for Azure via the `az`
+CLI. It will need to be customized for your specific environment and
+requirements.
 
 For example, if the Trustle Connector will be read-only, syncing users and
 groups from Azure but not updating them, then the `GroupMember.ReadWrite.All`
@@ -19,8 +20,8 @@ access is not needed.
 Additionally, the application secret can be manually obtained from the Azure
 console instead of with the Azure CLI. In which case, skip that step.
 
-The Hostname of the organization in Trustle is required to configure the
-OAuth callback URL.
+The Trustle URL for the organization is required to configure the OAuth callback
+URL.
 
 ## Configuration
 
@@ -45,33 +46,40 @@ The example performs the following actions in Azure:
 The user executing the Azure CLI commands must have appropriate Administrative
 access to the Azure subscription and directory.
 
-### Create the Trustle Connector application.
+### Login to Azure
 
-Edit [connector-app-access.json](connector-app-access.json). The
-OAuth callback URL hostname will need to be modified with the organization
-name (`ORG_HOSTNAME` below). Additionally, the default access policies include
-`GroupMember.ReadWrite.All` which can be removed if the Trustle Connector will
-only be used to retrieve information from Azure into Trustle.
+Set up Azure credentials first - refer to Azure CLI documentation. The TENANT_ID
+is the GUID of the directory to which the Trustle Connector will be attached.
 
-Login to azure.
+Login to azure:
 
 ```
-# Set up Azure credentials first - refer to Azure CLI documentation
-
 TENANT_ID=4b1f48d8-ca84-62c6-b160-ebcb728589d0
 
 az login --tenant ${TENANT_ID}
 ```
 
-Create the Trustle Connector application.
+### Create the Trustle Connector application
+
+The OAuth callback (reply) needs to be the URL used to access Trustle for the
+organization. This is the same base URL used to access Trustle in the browser
+and should look like `https://MY-ORG.trustle.io`. This needs to be set in
+`TRUSTLE_URL` in the example.
+
+Edit [connector-app-access.json](connector-app-access.json) as required. The
+default access policies include `GroupMember.ReadWrite.All` which can be
+removed if the Trustle Connector will only be used to retrieve information from
+Azure into Trustle, but not update group membership in Azure.
+
+Create the Trustle Connector application:
 
 ```
-ORG_HOSTNAME=my-org
+TRUSTLE_URL=https://MY-ORG.trustle.io
 APP_NAME="Trustle Connector"
 
 az ad app create \
 --display-name ${APP_NAME} \
---reply-urls "https://${ORG_HOSTNAME}.trustle.io/api/connect/azure_ad/oauth" \
+--reply-urls "${TRUSTLE_URL}/api/connect/azure_ad/oauth" \
 --required-resource-accesses @connector-app-access.json
 ```
 
@@ -92,6 +100,8 @@ be provided to Trustle when setting up the connector. Alternatively, the
 password can be created in the Azure console. The application ID is required
 from the previous step, set in `APP_ID` here.
 
+Generate password:
+
 ```
 APP_ID=e825eb08-0a8c-f5d3-9d14-3c96af56b26c
 APP_PWD=$(pwgen 38)
@@ -108,6 +118,8 @@ This step will authorize the Trustle Connector application to the Azure
 subscription. The application ID is required, set in `APP_ID` here. The
 subscription ID is also required, specified in `SUB_ID` here. This can be
 found in the Azure console for the active subscription.
+
+Authorize application:
 
 ```
 APP_ID=e825eb08-0a8c-f5d3-9d14-3c96af56b26c
