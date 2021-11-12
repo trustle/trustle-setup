@@ -18,14 +18,8 @@ variable "trustle-connector-user" {
   default     = "Trustle Connector"
 }
 
-variable "trustle-org-name" {
-  description = "Trustle organization name"
-  #default     = "bork"
-}
-
-variable "trustle-redirect-url" {
-  description = "Trustle oauth redirect URL"
-  default     = "trustle.io/api/connect/azure_ad/oauth"
+variable "trustle-url" {
+  description = "Trustle URL for Organization - 'https://MY-ORG.trustle.io'"
 }
 
 #
@@ -73,7 +67,7 @@ resource "azuread_application" "trustle-connector" {
   sign_in_audience = "AzureADMyOrg"
 
   web {
-    redirect_uris = ["https://${var.trustle-org-name}.${var.trustle-redirect-url}"]
+    redirect_uris = ["${var.trustle-url}/api/connect/azure_ad/oauth"]
   }
 
   required_resource_access {

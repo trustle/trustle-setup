@@ -64,7 +64,10 @@ az login --tenant ${TENANT_ID}
 The OAuth callback (reply) needs to be the URL used to access Trustle for the
 organization. This is the same base URL used to access Trustle in the browser
 and should look like `https://MY-ORG.trustle.io`. This needs to be set in
-`TRUSTLE_URL` in the example.
+`TRUSTLE_URL` in the example. **Be sure TRUSTLE_URL is formatted exactly as
+shown - if not correctly formatted or it contains extraneous information, such
+as a trailing slash, there will be an error later when configuring the
+connector.**
 
 Edit [connector-app-access.json](connector-app-access.json) as required. The
 default access policies include `GroupMember.ReadWrite.All` which can be
@@ -100,17 +103,25 @@ be provided to Trustle when setting up the connector. Alternatively, the
 password can be created in the Azure console. The application ID is required
 from the previous step, set in `APP_ID` here.
 
+**Note: A password can be generated in the Azure portal instead of using the
+CLI. Skip this step in that case, but note the secret is required when
+configuring the connector in Trustle.**
+
 Generate password:
 
 ```
 APP_ID=e825eb08-0a8c-f5d3-9d14-3c96af56b26c
-APP_PWD=$(pwgen 38)
+APP_PWD=$(pwgen 38 1)
 az ad app credential reset --id ${APP_ID} --password ${APP_PWD}
 ```
 
 The output of this command will include a `password` field containing the
 application secret. This value is provided to Trustle during connector
 configuration.
+
+**Note the password will be shown in the output of the above command.
+Alternatively, a password can be generated in the Azure portal for the
+application instead.**
 
 ### Authorize application to Azure subscription
 
@@ -145,3 +156,6 @@ echo "Directory (tenant) ID       : $TENANT_ID"
 echo "Application (client) ID     : $APP_ID"
 echo "Client credentials (secret) : $APP_PWD"
 ```
+
+**If a password was generated in the Azure console, use that generated value
+instead, and don't echo APP_PWD.**

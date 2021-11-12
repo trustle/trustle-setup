@@ -49,30 +49,51 @@ exposure of these sensitive credentials, remove the outputs and resource from
 the Terraform template and obtain this secret manually via the Azure console or
 Azure CLI.
 
+**Note that after applying the Terraform template an Administrator must go into
+the Azure console and consent to application access, then add the Trustle
+Connector application to the `Reader` role on the Azure subscription.**
+
 ## Usage
 
+### Modify Terraform Template as Required
+
 Before applying this template please insure it has been modified for your usage.
+
+### Apply Terraform Template
+
+Replace the example `trustle-url` value with the Trustle URL for the
+Organization. This is the same base URL used to access Trustle in the browser
+and should look like `https://MY-ORG.trustle.io`. **Be sure `trustle-url` is
+formatted exactly as shown - if not correctly formatted or it contains
+extraneous information, such as a trailing slash, there will be an error later
+when configuring the connector.**
 
 ```
 # Set up Azure credentials first - refer to Terraform Azure documentation
 
 $ terraform init
 
-$ terraform apply -var 'trustle-org-name=ORG_HOSTNAME'
+$ terraform apply -var 'trustle-url=https://MY-ORG.trustle.io'
 
 # Optionally obtain secret for the application
 
 $ terraform output connector_client_secret
-
 ```
 
-Note that an Administrator must go into the Azure console and consent to
-application access, then add the Trustle Connector application to the
-`Reader` role on the Azure subscription.
+### Consent Application API Permissions
 
-To consent the application permissions, navigate to the application in the
+Consent the application permissions by navigating to the application in the
 Azure console and click the "Grant admin consent for ..." button on the
 "API Permissions" page.
+
+### Add Application to Subscription
+
+Add the application role to the subscription by navigating to the active
+subscription in the Azure console, select "Access Control (IAM)", and "Add" a
+"role assignment" of "Reader" to the Trustle Connector application created
+above.
+
+### Configure Azure Connector in Trustle
 
 The directory tenant ID, connector application ID, and client secret are
 provided to Trustle when configuring an automated Azure resource management
