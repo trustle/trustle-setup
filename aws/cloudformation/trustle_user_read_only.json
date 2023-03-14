@@ -1,0 +1,58 @@
+{
+  "Resources": {
+    "trustleconnector": {
+      "Type": "AWS::IAM::User",
+      "Properties": {
+        "Tags": [
+          {
+            "Key": "created_by",
+            "Value": "trustle_cloudformation"
+          }
+        ],
+        "UserName": "trustle-connector",
+        "Policies": [
+          {
+            "PolicyName": "trustle-read",
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "iam:GetRole",
+                    "iam:GetPolicyVersion",
+                    "iam:GetPolicy",
+                    "iam:ListGroupPolicies",
+                    "iam:ListUserPolicies",
+                    "iam:GetGroup",
+                    "iam:ListPolicyVersions",
+                    "iam:GetUserPolicy",
+                    "iam:ListGroupsForUser",
+                    "iam:ListAttachedRolePolicies",
+                    "iam:ListAttachedUserPolicies",
+                    "iam:ListAttachedGroupPolicies",
+                    "iam:GetGroupPolicy",
+                    "iam:GetUser",
+                    "iam:ListRolePolicies",
+                    "iam:GetRolePolicy",
+                    "iam:ListPolicies",
+                    "iam:ListRoles",
+                    "iam:ListUsers",
+                    "iam:ListGroups",
+                    "iam:GetAccountAuthorizationDetails",
+                    "iam:GenerateCredentialReport",
+                    "iam:GetCredentialReport",
+                    "iam:GenerateServiceLastAccessedDetails",
+                    "iam:GetServiceLastAccessedDetails",
+                    "iam:GetServiceLastAccessedDetailsWithEntities"
+                  ],
+                  "Resource": "*"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  }
+}
