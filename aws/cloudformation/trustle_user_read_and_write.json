@@ -1,6 +1,6 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
-  "Description": "Trustle",
+  "Description": "This template creates a Trustle user (trustle-connector), and creates and attaches managed read and write policies (trustle-read, trustle-write) to the user.",
   "Resources": {
     "TrustleUser": {
       "Type": "AWS::IAM::User",
