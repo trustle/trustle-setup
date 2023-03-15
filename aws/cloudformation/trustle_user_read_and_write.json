@@ -1,6 +1,8 @@
 {
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "Trustle",
   "Resources": {
-    "trustleconnector": {
+    "TrustleUser": {
       "Type": "AWS::IAM::User",
       "Properties": {
         "Tags": [
@@ -9,68 +11,82 @@
             "Value": "trustle_cloudformation"
           }
         ],
-        "UserName": "trustle-connector",
-        "Policies": [
+        "UserName": "trustle-connector"
+      }
+    },
+    "TrustleWrite": {
+      "Type": "AWS::IAM::ManagedPolicy",
+      "Properties": {
+        "Users": [
           {
-            "PolicyName": "trustle-read",
-            "PolicyDocument": {
-              "Version": "2012-10-17",
-              "Statement": [
-                {
-                  "Effect": "Allow",
-                  "Action": [
-                    "iam:GetRole",
-                    "iam:GetPolicyVersion",
-                    "iam:GetPolicy",
-                    "iam:ListGroupPolicies",
-                    "iam:ListUserPolicies",
-                    "iam:GetGroup",
-                    "iam:ListPolicyVersions",
-                    "iam:GetUserPolicy",
-                    "iam:ListGroupsForUser",
-                    "iam:ListAttachedRolePolicies",
-                    "iam:ListAttachedUserPolicies",
-                    "iam:ListAttachedGroupPolicies",
-                    "iam:GetGroupPolicy",
-                    "iam:GetUser",
-                    "iam:ListRolePolicies",
-                    "iam:GetRolePolicy",
-                    "iam:ListPolicies",
-                    "iam:ListRoles",
-                    "iam:ListUsers",
-                    "iam:ListGroups",
-                    "iam:GetAccountAuthorizationDetails",
-                    "iam:GenerateCredentialReport",
-                    "iam:GetCredentialReport",
-                    "iam:GenerateServiceLastAccessedDetails",
-                    "iam:GetServiceLastAccessedDetails",
-                    "iam:GetServiceLastAccessedDetailsWithEntities"
-                  ],
-                  "Resource": "*"
-                }
-              ]
-            }
-          },
-          {
-            "PolicyName": "trustle-write",
-            "PolicyDocument": {
-              "Version": "2012-10-17",
-              "Statement": [
-                {
-                  "Effect": "Allow",
-                  "Action": [
-                    "iam:GenerateCredentialReport",
-                    "iam:GetCredentialReport",
-                    "iam:GenerateServiceLastAccessedDetails",
-                    "iam:GetServiceLastAccessedDetails",
-                    "iam:GetServiceLastAccessedDetailsWithEntities"
-                  ],
-                  "Resource": "*"
-                }
-              ]
-            }
+            "Ref": "TrustleUser"
           }
-        ]
+        ],
+        "ManagedPolicyName": "trustle-write",
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Action": [
+                "iam:GenerateCredentialReport",
+                "iam:GetCredentialReport",
+                "iam:GenerateServiceLastAccessedDetails",
+                "iam:GetServiceLastAccessedDetails",
+                "iam:GetServiceLastAccessedDetailsWithEntities"
+              ],
+              "Resource": "*"
+            }
+          ]
+        }
+      }
+    },
+    "TrustleRead": {
+      "Type": "AWS::IAM::ManagedPolicy",
+      "Properties": {
+        "Users": [
+          {
+            "Ref": "TrustleUser"
+          }
+        ],
+        "ManagedPolicyName": "trustle-read",
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Action": [
+                "iam:GetRole",
+                "iam:GetPolicyVersion",
+                "iam:GetPolicy",
+                "iam:ListGroupPolicies",
+                "iam:ListUserPolicies",
+                "iam:GetGroup",
+                "iam:ListPolicyVersions",
+                "iam:GetUserPolicy",
+                "iam:ListGroupsForUser",
+                "iam:ListAttachedRolePolicies",
+                "iam:ListAttachedUserPolicies",
+                "iam:ListAttachedGroupPolicies",
+                "iam:GetGroupPolicy",
+                "iam:GetUser",
+                "iam:ListRolePolicies",
+                "iam:GetRolePolicy",
+                "iam:ListPolicies",
+                "iam:ListRoles",
+                "iam:ListUsers",
+                "iam:ListGroups",
+                "iam:GetAccountAuthorizationDetails",
+                "iam:GenerateCredentialReport",
+                "iam:GetCredentialReport",
+                "iam:GenerateServiceLastAccessedDetails",
+                "iam:GetServiceLastAccessedDetails",
+                "iam:GetServiceLastAccessedDetailsWithEntities"
+              ],
+              "Resource": "*"
+            }
+          ]
+        }
       }
     }
   }
