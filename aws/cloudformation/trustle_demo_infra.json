@@ -1,0 +1,850 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Metadata": {
+        "AWS::CloudFormation::Designer": {
+            "6b53e613-aa0f-4be0-9661-cc65aa66972b": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 180,
+                    "y": 60
+                },
+                "z": 1,
+                "embeds": []
+            },
+            "291afed5-9696-4304-81de-aefb12df20c5": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 90,
+                    "y": 60
+                },
+                "z": 1,
+                "embeds": [],
+                "isassociatedwith": [
+                    "b4a2743c-5896-43c4-99c4-baaa377ac0d2",
+                    "b4a2743c-5896-43c4-99c4-baaa377ac0db"
+                ]
+            },
+            "b4a2743c-5896-43c4-99c4-baaa377ac0db": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": -80,
+                    "y": 80
+                },
+                "z": 1,
+                "embeds": []
+            },
+            "b4a2743c-5896-43c4-99c4-baaa377ac0da": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 90,
+                    "y": 390
+                },
+                "z": 1,
+                "embeds": []
+            },
+            "6b53e613-aa0f-4be0-9661-cc65aa66972e": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 420,
+                    "y": 60
+                },
+                "z": 1,
+                "embeds": []
+            },
+            "6b53e613-aa0f-4be0-9661-cc65aa66972d": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 270,
+                    "y": 60
+                },
+                "z": 1,
+                "embeds": []
+            },
+            "6b53e613-aa0f-4be0-9661-cc65aa66972c": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 360,
+                    "y": 210
+                },
+                "z": 1,
+                "embeds": []
+            },
+            "6b53e613-aa0f-4be0-9661-cc65aa66972a": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 510,
+                    "y": 60
+                },
+                "z": 1,
+                "embeds": []
+            },
+            "6b53e613-aa0f-4be0-9661-cc65aa66972t": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 340,
+                    "y": 140
+                },
+                "z": 1,
+                "embeds": []
+            },
+            "b4a2743c-5896-43c4-99c4-baaa377cc0rw": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 90,
+                    "y": 300
+                },
+                "z": 1,
+                "embeds": []
+            },
+            "b4a2743c-5896-43c4-99c4-baaa377accrw": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": -60,
+                    "y": 160
+                },
+                "z": 0,
+                "embeds": []
+            },
+            "b4a2743c-5896-43c4-99c4-baaa377ac0rw": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 90,
+                    "y": 240
+                },
+                "z": 1,
+                "embeds": []
+            },
+            "291afed5-9696-4304-81de-aefb12df20cw": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 270,
+                    "y": 290
+                },
+                "z": 1,
+                "embeds": [],
+                "isassociatedwith": [
+                    "b4a2743c-5896-43c4-99c4-baaa377ac0rw"
+                ]
+            },
+            "291afed5-9696-4304-81de-aefb12df2ccw": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 90,
+                    "y": 150
+                },
+                "z": 1,
+                "embeds": [],
+                "isassociatedwith": [
+                    "b4a2743c-5896-43c4-99c4-baaa377accrw"
+                ]
+            },
+            "291afed5-9696-4304-81de-aefb12dfcdcw": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 90,
+                    "y": 300
+                },
+                "z": 1,
+                "embeds": [],
+                "isassociatedwith": [
+                    "b4a2743c-5896-43c4-99c4-baaa377cc0rw"
+                ]
+            },
+            "6b53e613-aa0f-4be0-9661-cc65aa66972h": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 180,
+                    "y": 150
+                },
+                "z": 1,
+                "embeds": []
+            },
+            "0b1fa13c-3c2d-4b06-b1e7-d2d50193472e": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 660,
+                    "y": 180
+                },
+                "z": 1,
+                "embeds": []
+            },
+            "0b1fa13c-3c2d-4b06-b1e7-d2d50193472g": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 490,
+                    "y": 160
+                },
+                "z": 1,
+                "embeds": [],
+                "dependson": [
+                    "6b53e613-aa0f-4be0-9661-cc65aa66972t"
+                ]
+            },
+            "0b1fa13c-3c2d-4b06-b1e7-d2d50193472h": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 660,
+                    "y": 270
+                },
+                "z": 1,
+                "embeds": []
+            },
+            "291afed5-9696-4304-81de-aefb12dxcdcw": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 520,
+                    "y": 290
+                },
+                "z": 1,
+                "embeds": [],
+                "dependson": [
+                    "6b53e613-aa0f-4be0-9661-cc65aa66972e"
+                ]
+            }
+        }
+    },
+    "Resources": {
+        "TrustleDemoManagedPolicyDynamoDBReportRead": {
+            "Type": "AWS::IAM::ManagedPolicy",
+            "DependsOn": "TrustleDemoUserEd",
+            "Properties": {
+                "Users": [
+                    "trustle-demo-ed"
+                ],
+                "ManagedPolicyName": "TrustleDemoManagedPolicyDynamoDBReportRead",
+                "PolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                        {
+                            "Sid": "ListAndDescribe",
+                            "Effect": "Allow",
+                            "Action": [
+                                "dynamodb:List*",
+                                "dynamodb:DescribeReservedCapacity*",
+                                "dynamodb:DescribeLimits",
+                                "dynamodb:DescribeTimeToLive"
+                            ],
+                            "Resource": "*"
+                        },
+                        {
+                            "Sid": "SpecificTable",
+                            "Effect": "Allow",
+                            "Action": [
+                                "dynamodb:BatchGet*",
+                                "dynamodb:DescribeStream",
+                                "dynamodb:DescribeTable",
+                                "dynamodb:Get*",
+                                "dynamodb:Query",
+                                "dynamodb:Scan",
+                                "dynamodb:BatchWrite*",
+                                "dynamodb:CreateTable",
+                                "dynamodb:Delete*",
+                                "dynamodb:Update*",
+                                "dynamodb:PutItem"
+                            ],
+                            "Resource": "arn:aws:dynamodb:*:*:table/customerdata"
+                        }
+                    ]
+                }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "291afed5-9696-4304-81de-aefb12dxcdcw"
+                }
+            }
+        },
+        "TrustleDemoManagedPolicyS3CustomerReadWrite": {
+            "Type": "AWS::IAM::ManagedPolicy",
+            "Properties": {
+                "Groups": [
+                    {
+                        "Ref": "TrustleDemoGroupS3CustomerReadWrite"
+                    }
+                ],
+                "ManagedPolicyName": "TrustleDemoManagedPolicyS3CustomerReadWrite",
+                "PolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                        {
+                            "Sid": "ListObjectsInBucket",
+                            "Effect": "Allow",
+                            "Action": [
+                                "s3:ListBucket"
+                            ],
+                            "Resource": [
+                                "arn:aws:s3:::trustle-demo-1"
+                            ]
+                        },
+                        {
+                            "Sid": "AllObjectActions",
+                            "Effect": "Allow",
+                            "Action": "s3:*Object",
+                            "Resource": [
+                                "arn:aws:s3:::trustle-demo-1/customer_data/*"
+                            ]
+                        }
+                    ]
+                }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "291afed5-9696-4304-81de-aefb12dfcdcw"
+                }
+            }
+        },
+        "TrustleDemoManagedPolicyS3CodeReadWrite": {
+            "Type": "AWS::IAM::ManagedPolicy",
+            "Properties": {
+                "Groups": [
+                    {
+                        "Ref": "TrustleDemoGroupS3CodeReadWrite"
+                    }
+                ],
+                "ManagedPolicyName": "TrustleDemoManagedPolicyS3CodeReadWrite",
+                "PolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                        {
+                            "Sid": "ListObjectsInBucket",
+                            "Effect": "Allow",
+                            "Action": [
+                                "s3:ListBucket"
+                            ],
+                            "Resource": [
+                                "arn:aws:s3:::trustle-demo-1"
+                            ]
+                        },
+                        {
+                            "Sid": "AllObjectActions",
+                            "Effect": "Allow",
+                            "Action": "s3:*Object",
+                            "Resource": [
+                                "arn:aws:s3:::trustle-demo-1/cgi-bin/*"
+                            ]
+                        }
+                    ]
+                }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "291afed5-9696-4304-81de-aefb12df2ccw"
+                }
+            }
+        },
+        "TrustleDemoManagedPolicyS3AssetsReadWrite": {
+            "Type": "AWS::IAM::ManagedPolicy",
+            "Properties": {
+                "Groups": [
+                    {
+                        "Ref": "TrustleDemoGroupS3AssetsReadWrite"
+                    }
+                ],
+                "ManagedPolicyName": "TrustleDemoManagedPolicyS3AssetsReadWrite",
+                "PolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                        {
+                            "Sid": "ListObjectsInBucket",
+                            "Effect": "Allow",
+                            "Action": [
+                                "s3:ListBucket"
+                            ],
+                            "Resource": [
+                                "arn:aws:s3:::trustle-demo-1"
+                            ]
+                        },
+                        {
+                            "Sid": "AllObjectActions",
+                            "Effect": "Allow",
+                            "Action": "s3:*Object",
+                            "Resource": [
+                                "arn:aws:s3:::trustle-demo-1/web_assets/*"
+                            ]
+                        }
+                    ]
+                }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "291afed5-9696-4304-81de-aefb12df20cw"
+                }
+            }
+        },
+        "TrustleDemoManagedPolicyS3AssetsRead": {
+            "Type": "AWS::IAM::ManagedPolicy",
+            "Properties": {
+                "Groups": [
+                    {
+                        "Ref": "TrustleDemoGroupS3AssetsRead"
+                    }
+                ],
+                "ManagedPolicyName": "TrustleDemoManagedPolicyS3AssetsRead",
+                "PolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                        {
+                            "Sid": "ListObjectsInBucket",
+                            "Effect": "Allow",
+                            "Action": [
+                                "s3:ListBucket"
+                            ],
+                            "Resource": [
+                                "arn:aws:s3:::trustle-demo-1"
+                            ]
+                        },
+                        {
+                            "Sid": "AllObjectActions",
+                            "Effect": "Allow",
+                            "Action": "s3:GetObject",
+                            "Resource": [
+                                "arn:aws:s3:::trustle-demo-1/web_assets/*"
+                            ]
+                        }
+                    ]
+                }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "291afed5-9696-4304-81de-aefb12df20c5"
+                }
+            }
+        },
+        "TrustleDemoUserTestbot": {
+            "Type": "AWS::IAM::User",
+            "Properties": {
+                "UserName": "trustle-demo-testbot",
+                "Groups": [
+                    "trustle-demo-S3Admin"
+                ],
+                "Tags": [
+                    {
+                        "Key": "created_by",
+                        "Value": "trustle_demo_cloudformation"
+                    }
+                ]
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "6b53e613-aa0f-4be0-9661-cc65aa66972t"
+                }
+            }
+        },
+         "TrustleDemoUserFran": {
+            "Type": "AWS::IAM::User",
+            "Properties": {
+                "UserName": "trustle-demo-fran",
+                "Groups": [
+                    "trustle-demo-S3AssetsReadWrite",
+                    "trustle-demo-S3CustomerReadWrite"
+                ],
+                "Tags": [
+                    {
+                        "Key": "created_by",
+                        "Value": "trustle_demo_cloudformation"
+                    }
+                ]
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "6b53e613-aa0f-4ba0-9661-cc65aa66972h"
+                }
+            }
+        },
+        "TrustleDemoUserHoncho": {
+            "Type": "AWS::IAM::User",
+            "Properties": {
+                "UserName": "trustle-demo-honcho",
+                "Groups": [
+                    "trustle-demo-S3AssetsReadWrite",
+                    "trustle-demo-S3CustomerReadWrite"
+                ],
+                "Tags": [
+                    {
+                        "Key": "created_by",
+                        "Value": "trustle_demo_cloudformation"
+                    }
+                ]
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "6b53e613-aa0f-4be0-9661-cc65aa66972h"
+                }
+            }
+        },
+        "TrustleDemoUserAlice": {
+            "Type": "AWS::IAM::User",
+            "Properties": {
+                "UserName": "trustle-demo-alice",
+                "Groups": [
+                    "trustle-demo-S3Admin"
+                ],
+                "Tags": [
+                    {
+                        "Key": "created_by",
+                        "Value": "trustle_demo_cloudformation"
+                    }
+                ]
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "6b53e613-aa0f-4be0-9661-cc65aa66972a"
+                }
+            }
+        },
+        "TrustleDemoUserBob": {
+            "Type": "AWS::IAM::User",
+            "Properties": {
+                "UserName": "trustle-demo-bob",
+                "Groups": [
+                    "trustle-demo-S3AssetsRead",
+                    "trustle-demo-S3CustomerReadWrite"
+                ],
+                "Tags": [
+                    {
+                        "Key": "created_by",
+                        "Value": "trustle_demo_cloudformation"
+                    }
+                ]
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "6b53e613-aa0f-4be0-9661-cc65aa66972b"
+                }
+            }
+        },
+        "TrustleDemoUserCal": {
+            "Type": "AWS::IAM::User",
+            "Properties": {
+                "UserName": "trustle-demo-cal",
+                "ManagedPolicyArns": [
+                    "arn:aws:iam::aws:policy/CloudFrontFullAccess"
+                ],
+                "Groups": [
+                    "trustle-demo-S3Admin"
+                ],
+                "Tags": [
+                    {
+                        "Key": "created_by",
+                        "Value": "trustle_demo_cloudformation"
+                    }
+                ]
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "6b53e613-aa0f-4be0-9661-cc65aa66972c"
+                }
+            }
+        },
+        "TrustleDemoUserDina": {
+            "Type": "AWS::IAM::User",
+            "Properties": {
+                "UserName": "trustle-demo-dina",
+                "Groups": [
+                    "trustle-demo-S3AssetsRead",
+                    "trustle-demo-S3CodeReadWrite"
+                ],
+                "Tags": [
+                    {
+                        "Key": "created_by",
+                        "Value": "trustle_demo_cloudformation"
+                    }
+                ]
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "6b53e613-aa0f-4be0-9661-cc65aa66972d"
+                }
+            }
+        },
+        "TrustleDemoUserEd": {
+            "Type": "AWS::IAM::User",
+            "Properties": {
+                "UserName": "trustle-demo-ed",
+                "Groups": [
+                    "trustle-demo-S3AssetsReadWrite",
+                    "trustle-demo-S3CustomerReadWrite"
+                ],
+                "Tags": [
+                    {
+                        "Key": "created_by",
+                        "Value": "trustle_demo_cloudformation"
+                    }
+                ]
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "6b53e613-aa0f-4be0-9661-cc65aa66972e"
+                }
+            }
+        },
+        "TrustleDemoGroupS3Admin": {
+            "Type": "AWS::IAM::Group",
+            "Properties": {
+                "GroupName": "trustle-demo-S3Admin",
+                "ManagedPolicyArns": [
+                    "arn:aws:iam::aws:policy/AmazonS3FullAccess"
+                ]
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "b4a2743c-5896-43c4-99c4-baaa377ac0da"
+                }
+            }
+        },
+        "TrustleDemoGroupS3AssetsRead": {
+            "Type": "AWS::IAM::Group",
+            "Properties": {
+                "GroupName": "trustle-demo-S3AssetsRead"
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "b4a2743c-5896-43c4-99c4-baaa377ac0db"
+                }
+            }
+        },
+        "TrustleDemoGroupS3AssetsReadWrite": {
+            "Type": "AWS::IAM::Group",
+            "Properties": {
+                "GroupName": "trustle-demo-S3AssetsReadWrite"
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "b4a2743c-5896-43c4-99c4-baaa377ac0rw"
+                }
+            }
+        },
+        "TrustleDemoGroupS3CodeReadWrite": {
+            "Type": "AWS::IAM::Group",
+            "Properties": {
+                "GroupName": "trustle-demo-S3CodeReadWrite"
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "b4a2743c-5896-43c4-99c4-baaa377accrw"
+                }
+            }
+        },
+        "TrustleDemoGroupS3CustomerReadWrite": {
+            "Type": "AWS::IAM::Group",
+            "Properties": {
+                "GroupName": "trustle-demo-S3CustomerReadWrite"
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "b4a2743c-5896-43c4-99c4-baaa377cc0rw"
+                }
+            }
+        },
+        "TrustleDemoLambdaExecutionRole": {
+            "Type": "AWS::IAM::Role",
+            "Properties": {
+                "AssumeRolePolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                        {
+                            "Effect": "Allow",
+                            "Principal": {
+                                "Service": [
+                                    "lambda.amazonaws.com"
+                                ]
+                            },
+                            "Action": [
+                                "sts:AssumeRole"
+                            ]
+                        }
+                    ]
+                },
+                "RoleName": "TrustleDemoLambdaExecutionRole",
+                "Policies": [
+                    {
+                        "PolicyName": "AllLogs",
+                        "PolicyDocument": {
+                            "Version": "2012-10-17",
+                            "Statement": [
+                                {
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "logs:*"
+                                    ],
+                                    "Resource": "arn:aws:logs:*:*:*"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "0b1fa13c-3c2d-4b06-b1e7-d2d50193472e"
+                }
+            }
+        },
+        "TrustleDemoAPIGWExecutionRole": {
+            "Type": "AWS::IAM::Role",
+            "Properties": {
+                "AssumeRolePolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                        {
+                            "Effect": "Allow",
+                            "Principal": {
+                                "Service": [
+                                    "apigateway.amazonaws.com"
+                                ],
+                                "AWS": {
+                                    "Fn::Sub": "arn:aws:iam::${AWS::AccountId}:root"
+                                }
+                            },
+                            "Action": [
+                                "sts:AssumeRole"
+                            ]
+                        }
+                    ]
+                },
+                "RoleName": "TrustleDemoAPIGWExecutionRole",
+                "Policies": [
+                    {
+                        "PolicyName": "InvokeLambda",
+                        "PolicyDocument": {
+                            "Version": "2012-10-17",
+                            "Statement": [
+                                {
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "lambda:InvokeFunction"
+                                    ],
+                                    "Resource": "*"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "0b1fa13c-3c2d-4b06-b1e7-d2d50193472h"
+                }
+            }
+        },
+        "TrustleDemoIntegrationTesterRole": {
+            "Type": "AWS::IAM::Role",
+            "DependsOn": "TrustleDemoUserTestbot",
+            "Properties": {
+                "AssumeRolePolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                        {
+                            "Effect": "Allow",
+                            "Principal": {
+                                "AWS": [
+                                    {
+                                        "Fn::Sub": "arn:aws:iam::${AWS::AccountId}:user/trustle-demo-testbot"
+                                    }
+                                ]
+                            },
+                            "Action": [
+                                "sts:AssumeRole"
+                            ]
+                        }
+                    ]
+                },
+                "RoleName": "TrustleDemoIntegrationTesterRole",
+                "ManagedPolicyArns": [
+                    "arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess"
+                ],
+                "Policies": [
+                    {
+                        "PolicyName": "APIGWLambdaDDBAccess",
+                        "PolicyDocument": {
+                            "Version": "2012-10-17",
+                            "Statement": [
+                                {
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "lambda:InvokeFunction"
+                                    ],
+                                    "Resource": "*"
+                                },
+                                {
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "apigateway:GET",
+                                        "apigateway:POST"
+                                    ],
+                                    "Resource": [
+                                        "arn:aws:apigateway:*::/apis/*/*"
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "0b1fa13c-3c2d-4b06-b1e7-d2d50193472g"
+                }
+            }
+        }
+    }
+}
