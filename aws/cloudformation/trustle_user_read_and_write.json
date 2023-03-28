@@ -29,11 +29,10 @@
             {
               "Effect": "Allow",
               "Action": [
-                "iam:GenerateCredentialReport",
-                "iam:GetCredentialReport",
-                "iam:GenerateServiceLastAccessedDetails",
-                "iam:GetServiceLastAccessedDetails",
-                "iam:GetServiceLastAccessedDetailsWithEntities"
+                "iam:AddUserToGroup",
+                "iam:RemoveUserFromGroup",
+                "iam:AttachUserPolicy",
+                "iam:DetachUserPolicy"
               ],
               "Resource": "*"
             }
