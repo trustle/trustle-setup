@@ -1,0 +1,133 @@
+Install-Module AzureAD.Standard.Preview -Scope CurrentUser
+# Connect-AzureAD -TenantId $TenantID
+
+Install-Module Az -Scope CurrentUser
+Connect-AzAccount -UseDeviceAuthentication
+az login
+
+Set-PSRepository "PSGallery" -InstallationPolicy Trusted
+Import-Module Microsoft.Graph.Applications
+
+Connect-MgGraph -scopes "User.Read.All, Policy.Read.All, Policy.ReadWrite.Authorization, Application.Read.All, `
+Application.ReadWrite.All, Directory.Read.All, Directory.ReadWrite.All, Directory.ReadWrite.All, Application.Read.All, `
+Application.ReadWrite.All, Directory.Read.All, Directory.ReadWrite.All, AppRoleAssignment.ReadWrite.All, `
+DelegatedPermissionGrant.ReadWrite.All"
+
+#-------------------------------------------------------------
+# Function to create a new Azure AD application
+
+function Add-Application {
+
+    param(
+        [string]$appName
+    )
+
+    $ReplyURL = Read-Host "Enter your redirect URI"
+    $App = New-AzureADApplication -DisplayName $appName -ReplyUrls $ReplyURL
+    New-AzureADServicePrincipal -AppId $App.AppId
+
+}
+
+# -------------------------------------------------------------
+# Function to Add Permissions
+
+function Add-Permission {
+
+    param(
+        [string]$appName
+    )
+
+    $Graph = New-Object -TypeName "Microsoft.Open.AzureAD.Model.RequiredResourceAccess"
+    $Graph.ResourceAppId = "00000003-0000-0000-c000-000000000000" # Microsoft Graph API
+
+    $Azure = New-Object -TypeName "Microsoft.Open.AzureAD.Model.RequiredResourceAccess"
+    $Azure.ResourceAppId = "797f4846-ba00-4fd7-ba43-dac1f8f63013" # Azure Service Management API
+
+    $UserReadAll = New-Object -TypeName "Microsoft.Open.AzureAD.Model.ResourceAccess" -ArgumentList "a154be20-db9c-4678-8ab7-66f6cc099a59","Scope"
+    $GroupReadAll = New-Object -TypeName "Microsoft.Open.AzureAD.Model.ResourceAccess" -ArgumentList "5f8c59db-677d-491f-a6b8-5f174b11ec1d","Scope"
+    $GroupMemberReadAll = New-Object -TypeName "Microsoft.Open.AzureAD.Model.ResourceAccess" -ArgumentList "bc024368-1153-4739-b217-4326f2e966d0","Scope"
+    $GroupMemberReadWriteAll = New-Object -TypeName "Microsoft.Open.AzureAD.Model.ResourceAccess" -ArgumentList "f81125ac-d3b7-4573-a3b2-7099cc39df9e","Scope"
+    $DirectoryReadAll = New-Object -TypeName "Microsoft.Open.AzureAD.Model.ResourceAccess" -ArgumentList "06da0dbc-49e2-44d2-8312-53f166ab848a","Scope"
+    $AuditLogReadAll = New-Object -TypeName "Microsoft.Open.AzureAD.Model.ResourceAccess" -ArgumentList "e4c9e354-4dc5-45b8-9e7c-e1393b0b1a20","Scope"
+    $offlineaccess = New-Object -TypeName "Microsoft.Open.AzureAD.Model.ResourceAccess" -ArgumentList "7427e0e9-2fba-42fe-b0c0-848c9e6a8182","Scope"
+
+    $Graph.ResourceAccess = $UserReadAll, $GroupReadAll, $GroupMemberReadAll, $GroupMemberReadWriteAll, $DirectoryReadAll, $AuditLogReadAll, $offlineaccess
+
+    $userimpersonation = New-Object -TypeName "Microsoft.Open.AzureAD.Model.ResourceAccess" -ArgumentList "41094075-9dad-400e-a0bd-54e686782033","Scope"
+
+    $Azure.ResourceAccess = $userimpersonation
+
+    $App = Get-AzureADApplication -Filter "DisplayName eq '$($appName)'"
+    Set-AzureADApplication -ObjectId $App.ObjectId -RequiredResourceAccess $Graph, $Azure
+
+}
+
+# -------------------------------------------------------------
+# Function to add Admin Consent
+
+function Add-AdminConsent {
+
+    param(
+        [string]$appName
+    )
+
+    $clientId = (Get-AzureADServicePrincipal -Filter "DisplayName eq '$($appName)'").ObjectId
+    $resourceId1 = (Get-MgOauth2PermissionGrant | Where-Object { $_.Scope -contains "User.Read" }).ResourceId | Select-Object -First 1
+    $resourceId2 = (Get-MgOauth2PermissionGrant | Where-Object { $_.Scope -eq "user_impersonation" }).ResourceId | Select-Object -First 1
+
+    $params1 = @{
+        clientId = $clientId
+        consentType = "AllPrincipals"
+        resourceId = $resourceId1
+        scope = "AuditLog.Read.All Directory.Read.All User.Read.All offline_access Group.Read.All GroupMember.Read.All GroupMember.ReadWrite.All"
+    }
+
+    New-MgOauth2PermissionGrant -BodyParameter $params1
+
+    $params2 = @{
+        clientId = $clientId
+        consentType = "AllPrincipals"
+        resourceId = $resourceId2
+        scope = "user_impersonation"
+    }
+
+    New-MgOauth2PermissionGrant -BodyParameter $params2
+
+}
+
+# -------------------------------------------------------------
+# Function to add Reader Role
+
+function Add-ReaderRole {
+
+    param(
+        $appName
+    )
+    #$spId = (Get-AzureADServicePrincipal -Filter "DisplayName eq '$($appName)'").ObjectId
+    $spId = (Get-AzADServicePrincipal -DisplayName $appName).Id
+    $subscriptionId = (Get-AzContext).Subscription.id
+    New-AzRoleAssignment -ObjectId $spId -RoleDefinitionName "Reader" -Scope "/subscriptions/$subscriptionId"
+
+}
+
+#-------------------------------------------------------------
+# Create your application
+
+$appName = Read-Host "Name your Application"
+Add-Application $appName
+Add-Permission $appName
+Add-AdminConsent $appName
+Add-ReaderRole $appName
+
+$App = Get-AzureADApplication -Filter "DisplayName eq '$($appName)'"
+$PasswordCredential = New-AzureADApplicationPasswordCredential -ObjectId $App.ObjectId -CustomKeyIdentifier "PasswordKey"
+
+
+# Output the application details
+Write-Output "Azure AD Application Created:"
+Write-Output " "
+Write-Output "Application Name: $($App.DisplayName)"
+Write-Output " "
+Write-Output "Directory (tenant) ID: $((Get-AzTenant).Id)"
+Write-Output "Application (client) ID: $($App.AppId)"
+Write-Output "Secret (Password Credential): $($PasswordCredential.Value)"
