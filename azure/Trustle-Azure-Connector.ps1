@@ -137,7 +137,7 @@ Add-ReaderRole $appName
 $App = Get-MgApplication -Filter "DisplayName eq '$appName'"
 
 $passwordCred = @{
-    displayName = 'Password Credenital'
+    displayName = 'Password Credential'
  }
 
  $secret = Add-MgApplicationPassword -applicationId $App.Id -PasswordCredential $passwordCred
