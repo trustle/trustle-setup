@@ -9,6 +9,8 @@ Application.ReadWrite.All, Directory.Read.All, Directory.ReadWrite.All, Director
 Application.ReadWrite.All, Directory.Read.All, Directory.ReadWrite.All, AppRoleAssignment.ReadWrite.All, `
 DelegatedPermissionGrant.ReadWrite.All"
 
+Install-Module Microsoft.Graph.Users
+
 #-------------------------------------------------------------
 # Function to create a new Azure or 365 Application
 
@@ -51,7 +53,8 @@ function Add-DelegatedPermission {
         "offline_access",
         "Group.Read.All",
         "GroupMember.Read.All",
-        "GroupMember.ReadWrite.All"
+        "GroupMember.ReadWrite.All",
+        "Reports.Read.All"
     )
 
     $filteredDelegatedPermissions = Get-MgServicePrincipal -Filter "displayName eq 'Microsoft Graph'" `
@@ -87,6 +90,7 @@ function Add-DelegatedPermission {
 
     Update-MgApplication -ApplicationId $app.Id -BodyParameter $params
 
+    Write-Host -ForegroundColor Cyan "Added delegated permissions to app registration"
 
 }
 
@@ -121,7 +125,8 @@ function Add-ApplicationPermission {
         'Sites.FullControl.All',
         'User.Read.All',
         'User.ReadWrite.All',
-        'Organization.ReadWrite.All'
+        'Organization.ReadWrite.All',
+        'Reports.Read.All'
     )
 
     foreach($scope in $TrustleGraphScopes)
@@ -179,7 +184,7 @@ function Add-DelegatedAdminConsent {
         clientId = $clientId
         consentType = "AllPrincipals"
         resourceId = $resourceId1
-        scope = "AuditLog.Read.All Directory.Read.All User.Read.All offline_access Group.Read.All GroupMember.Read.All GroupMember.ReadWrite.All"
+        scope = "AuditLog.Read.All Directory.Read.All User.Read.All offline_access Group.Read.All GroupMember.Read.All GroupMember.ReadWrite.All Reports.Read.All"
     }
 
     New-MgOauth2PermissionGrant -BodyParameter $params1
@@ -192,6 +197,8 @@ function Add-DelegatedAdminConsent {
     }
 
     New-MgOauth2PermissionGrant -BodyParameter $params2
+
+    Write-Host -ForegroundColor Cyan "Added admin consent"
 
 }
 
@@ -214,6 +221,7 @@ function Add-ReaderRole {
 
 Do {
     $AzureOr365 = Read-Host "Which Trustle Connector do you wish to install for, 1) Azure, or 2) M365? Enter '1' or '2'"
+
 
     If (!(($AzureOr365 -eq '1') -or ($AzureOr365 -eq '2'))) {
         "Invalid Answer, try again."
@@ -241,7 +249,7 @@ Do {
         Write-Output " "
         Write-Output "Application Name: $($App.DisplayName)"
         Write-Output " "
-        Write-Output "Directory (tenant) ID: $((Get-AzTenant).Id)"
+        Write-Output "Directory (tenant) ID: $((Get-AzTenant).Id | Select-Object -First 1)"
         Write-Output "Application (client) ID: $($App.AppId)"
         Write-Output "Secret (Password Credential): $($secret.SecretText)"
     }
@@ -266,7 +274,7 @@ Do {
         Write-Output " "
         Write-Output "Application Name: $($App.DisplayName)"
         Write-Output " "
-        Write-Output "Directory (tenant) ID: $((Get-AzTenant).Id)"
+        Write-Output "Directory (tenant) ID: $((Get-AzTenant).Id | Select-Object -First 1)"
         Write-Output "Application (client) ID: $($App.AppId)"
         Write-Output "Secret (Password Credential): $($secret.SecretText)"
     }
