@@ -17,11 +17,12 @@ Install-Module Microsoft.Graph.Users
 function Add-AzureApplication {
 
     param(
-        [string]$appName
+        [string]$appName,
+        [string]$RedirectURI
     )
 
-    $ReplyURL = Read-Host "Enter your redirect URI"
-    $App = New-MgApplication -DisplayName $AppName -Web @{ RedirectUris = @($ReplyURL) }
+    # $ReplyURL = Read-Host "Enter your redirect URI"
+    $App = New-MgApplication -DisplayName $AppName -Web @{ RedirectUris = @($RedirectURI) }
 
     New-MgServicePrincipal -AppId $App.AppId
 }
@@ -211,6 +212,7 @@ function Add-ReaderRole {
         $appName
     )
     $spId = (Get-AzADServicePrincipal -DisplayName $appName).Id
+    # $spId = (Get-AzureADServicePrincipal -Filter "DisplayName eq '$($appName)'").ObjectId
     $subscriptionId = (Get-AzContext).Subscription.id
     New-AzRoleAssignment -ObjectId $spId -RoleDefinitionName "Reader" -Scope "/subscriptions/$subscriptionId"
 
@@ -220,6 +222,7 @@ function Add-ReaderRole {
 # Create your application
 
 Do {
+    $RedirectURI=$args[0].ToString()
     $AzureOr365 = Read-Host "Which Trustle Connector do you wish to install for, 1) Azure, or 2) M365? Enter '1' or '2'"
 
 
@@ -228,9 +231,13 @@ Do {
     }
     Elseif ($AzureOr365 -eq '1') {
         # Create Azure Application
+        
+        if (!$RedirectURI) {
+            $RedirectURI = Read-Host "Enter your redirect URI"
+        }
 
         $appName = Read-Host "Name your Application"
-        Add-AzureApplication $appName
+        Add-AzureApplication $appName $RedirectURI
         Add-DelegatedPermission $appName
         Add-DelegatedAdminConsent $appName
         Add-ReaderRole $appName
