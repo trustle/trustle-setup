@@ -238,9 +238,13 @@ Do {
 
         $appName = Read-Host "Name your Application"
         Add-AzureApplication $appName $RedirectURI
+        Start-Sleep -Seconds 1
         Add-DelegatedPermission $appName
+        Start-Sleep -Seconds 1
         Add-DelegatedAdminConsent $appName
+        Start-Sleep -Seconds 1
         Add-ReaderRole $appName
+        Start-Sleep -Seconds 1
 
         $App = Get-MgApplication -Filter "DisplayName eq '$appName'"
 
@@ -265,7 +269,9 @@ Do {
 
         $appName = Read-Host "Name your Application"
         Add-M365Application $appName
+        Start-Sleep -Seconds 1
         Add-ApplicationPermission $appName
+        Start-Sleep -Seconds 1
 
         $App = Get-MgApplication -Filter "DisplayName eq '$appName'"
 
