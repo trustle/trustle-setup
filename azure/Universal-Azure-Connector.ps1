@@ -39,7 +39,7 @@ function Add-M365Application {
 }
 
 # -------------------------------------------------------------
-# Function to Add Delegated Permissions
+# Function to Add Delegated Permissions - For Azure Application
 
 function Add-DelegatedPermission {
 
@@ -96,7 +96,7 @@ function Add-DelegatedPermission {
 }
 
 # -------------------------------------------------------------
-# Function to Add Application Permissions
+# Function to Add Application Permissions - For M365 Application
 
 function Add-ApplicationPermission {
 
@@ -107,13 +107,18 @@ function Add-ApplicationPermission {
     $app = Get-MgApplication -Filter "DisplayName eq '$appName'"
 
     $graphAppId = "00000003-0000-0000-c000-000000000000"
+    $office365AppId = "c5393580-f805-4401-95e8-94b7a6ef2fc2"
 
     $graphServicePrincipal = Get-MgServicePrincipal -Filter ("appId eq '" + $graphAppId + "'") -ErrorAction Stop
     $graphAppPermissions = $graphServicePrincipal.AppRoles
 
+    $office365ServicePrincipal = Get-MgServicePrincipal -Filter ("appId eq '" + $office365AppId + "'") -ErrorAction Stop
+    $office365AppPermissions = $office365ServicePrincipal.AppRoles
+
     $appServicePrincipal = Get-MgServicePrincipal -Filter "DisplayName eq '$appName'"
 
     $resourceAccess = @()
+    $resourceAccessOffice365 = @()
 
     $TrustleGraphScopes = @(
         'AuditLog.Read.All',
@@ -130,6 +135,10 @@ function Add-ApplicationPermission {
         'Reports.Read.All'
     )
 
+    $TrustleOffice365Scopes = @(
+        'ActivityFeed.Read'
+    )
+
     foreach($scope in $TrustleGraphScopes)
     {
         $permission = $graphAppPermissions | Where-Object { $_.Value -eq $scope }
@@ -144,11 +153,28 @@ function Add-ApplicationPermission {
         }
     }
 
+    foreach($scope in $TrustleOffice365Scopes)
+    {
+        $permission = $office365AppPermissions | Where-Object { $_.Value -eq $scope }
+        if ($permission)
+        {
+            $resourceAccessOffice365 += @{ Id =  $permission.Id; Type = "Role"}
+        }
+        else
+        {
+            Write-Host -ForegroundColor Red "Invalid scope:" $scope
+            Exit
+        }
+    }
+
     # Add the permissions to required resource access
     Update-MgApplication -ApplicationId $app.Id -RequiredResourceAccess `
     @{ ResourceAppId = $graphAppId; ResourceAccess = $resourceAccess } -ErrorAction Stop
-    Write-Host -ForegroundColor Cyan "Added application permissions to app registration"
 
+    Update-MgApplication -ApplicationId $app.Id -RequiredResourceAccess `
+    @{ ResourceAppId = $office365AppId; ResourceAccess = @($resourceAccessOffice365) } -ErrorAction Stop
+
+    Write-Host -ForegroundColor Cyan "Added application permissions to app registration"
 
     # Add admin consent
     foreach ($appRole in $resourceAccess)
@@ -163,13 +189,26 @@ function Add-ApplicationPermission {
             Exit
         }
     }
+
+    foreach ($appRole in $resourceAccessOffice365)
+    {
+        New-MgServicePrincipalAppRoleAssignment -ServicePrincipalId $appServicePrincipal.Id `
+        -PrincipalId $appServicePrincipal.Id -ResourceId $office365ServicePrincipal.Id `
+        -AppRoleId $appRole.Id -ErrorAction SilentlyContinue -ErrorVariable SPError | Out-Null
+        if ($SPError)
+        {
+            Write-Host -ForegroundColor Red "Admin consent for one of the requested scopes could not be added."
+            Write-Host -ForegroundColor Red $SPError
+            Exit
+        }
+    }
+
     Write-Host -ForegroundColor Cyan "Added admin consent"
 
 }
 
-
 # -------------------------------------------------------------
-# Function to add Delegated Permission Admin Consent
+# Function to add Delegated Permission Admin Consent - For Azure Application
 
 function Add-DelegatedAdminConsent {
 
